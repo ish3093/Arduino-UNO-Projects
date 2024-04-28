@@ -7,7 +7,7 @@
 float distance = 0;
 
 float getDistance(int trig,int echo){
-    pinMode(trig,OUTPUT);
+    pinMode(trig,OUTPUT);// Ultrasonic sensor
     digitalWrite(trig,LOW);
     delayMicroseconds(2);
     digitalWrite(trig,HIGH);
@@ -25,7 +25,7 @@ void _delay(float seconds) {
 
 void setup() {
   
-  pinMode(2,OUTPUT);
+  pinMode(2,OUTPUT);// piezo buzzer output configuration
   while(1) {
       distance = getDistance(9,10);
       if(distance < 15){
