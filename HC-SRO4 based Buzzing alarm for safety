@@ -1,0 +1,51 @@
+//HC-SRO4 based Buzzing alarm for safety
+
+#include <Arduino.h>
+#include <Wire.h>
+#include <SoftwareSerial.h>
+
+float distance = 0;
+
+float getDistance(int trig,int echo){
+    pinMode(trig,OUTPUT);
+    digitalWrite(trig,LOW);
+    delayMicroseconds(2);
+    digitalWrite(trig,HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trig,LOW);
+    pinMode(echo, INPUT);
+    return pulseIn(echo,HIGH,30000)/58.0;
+}
+
+
+void _delay(float seconds) {
+  long endTime = millis() + seconds * 1000;
+  while(millis() < endTime) _loop();
+}
+
+void setup() {
+  
+  pinMode(2,OUTPUT);
+  while(1) {
+      distance = getDistance(9,10);
+      if(distance < 15){
+        digitalWrite(2,1);
+        _delay(1);}
+      else{
+        digitalWrite(2,0);
+        _delay(1);
+
+      }
+
+     
+  }
+
+}
+
+void _loop() {
+ 
+}
+
+void loop() {
+  _loop();
+}
