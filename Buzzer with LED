@@ -1,0 +1,32 @@
+#include <Arduino.h>
+#include <Wire.h>
+#include <SoftwareSerial.h>
+
+void _delay(float seconds){
+  long endTime = millis() + seconds * 1000;
+  while (millis() < endTime)_loop();
+}
+void setup() {
+  // put your setup code here, to run once:
+pinMode(2,OUTPUT);
+pinMode(7,OUTPUT);
+
+for(int ct=0;ct<2;ct++){
+  digitalWrite(2,1);
+  digitalWrite(7,1);
+  
+  _delay(1);
+  digitalWrite(2,0);
+  digitalWrite(7,0);
+  
+  _delay(1);
+
+}
+}
+
+void _loop(){
+ 
+}
+void loop(){
+ _loop();
+}
